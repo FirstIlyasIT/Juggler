@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JugglerShell", "JugglerShell\JugglerShell.csproj", "{86B4E112-95AD-47AD-BA51-67F4E4153E84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JugglerSimpleExample", "JugglerSimpleExample\JugglerSimpleExample.csproj", "{B8AB4A51-4DB2-4CC4-85D8-909ADE9FD49F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{86B4E112-95AD-47AD-BA51-67F4E4153E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86B4E112-95AD-47AD-BA51-67F4E4153E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86B4E112-95AD-47AD-BA51-67F4E4153E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AB4A51-4DB2-4CC4-85D8-909ADE9FD49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AB4A51-4DB2-4CC4-85D8-909ADE9FD49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AB4A51-4DB2-4CC4-85D8-909ADE9FD49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AB4A51-4DB2-4CC4-85D8-909ADE9FD49F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
