@@ -1,7 +1,9 @@
 ﻿using JugglerClient;
+using JugglerSimpleExample;
 
-var builder = new ConnectionBuilder();
+var builder = new ConnectionParamsBuilder("localhost", 11000);
 using var connection = new JugglerConnection(builder);
-connection.Open();
-var response = connection.Query("");
-Console.WriteLine(response);
+var context = new StorageContext<object>(new ExampleConfiguration());
+var employee = new Employee("smith", 32000);
+context[typeof(Employee)].Add(employee);
+context.Push();
