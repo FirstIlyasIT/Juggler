@@ -1,8 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
-namespace JugglerClient;
+namespace JugglerClient.Connection;
 
 public class JugglerConnection : IDisposable
 {
@@ -13,9 +12,9 @@ public class JugglerConnection : IDisposable
     public JugglerConnection(ConnectionParamsBuilder paramsBuilder)
     {
         var ipHost = Dns.GetHostEntry(paramsBuilder.Address);
-        var ipAddr = ipHost.AddressList[0];
-        _ipEndPoint = new IPEndPoint(ipAddr, paramsBuilder.Port);
-        _sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        var ipAddress = ipHost.AddressList[0];
+        _ipEndPoint = new IPEndPoint(ipAddress, paramsBuilder.Port);
+        _sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
     }
 
     public void Open()
@@ -28,20 +27,11 @@ public class JugglerConnection : IDisposable
         Dispose();
     }
 
-    public int Query(string x)
+    public int Send(byte[] message)
     {
-        Console.WriteLine("Сокет соединяется с {0} ", _sender.RemoteEndPoint);
-        byte[] msg = Encoding.UTF8.GetBytes(x);
-            
-        // Отправляем данные через сокет
-        int bytesSent = _sender.Send(msg);
-            
-        // Получаем ответ от сервера
-        int bytesRec = _sender.Receive(Bytes);
-            
-        var y = $"\nОтвет от сервера: {Encoding.UTF8.GetString(Bytes, 0, bytesRec)}\n\n";
-
-        return 1;
+        _sender.Send(message);
+        
+        return _sender.Receive(Bytes);
     }
     public void Dispose()
     {

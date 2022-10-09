@@ -1,4 +1,3 @@
-using JugglerClient;
 using JugglerClient.Attributes;
 
 namespace JugglerSimpleExample;
@@ -14,5 +13,5 @@ public class Employee
 
     public string Name { get; set; }
     
-    public int Salary { get; set; }
+    public float Salary { get; set; }
 }

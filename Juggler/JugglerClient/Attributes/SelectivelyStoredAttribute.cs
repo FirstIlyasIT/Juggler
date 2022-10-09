@@ -1,6 +1,6 @@
 namespace JugglerClient.Attributes;
 
-public class SelectivelyStoredAttribute: Attribute
+public class SelectivelyStoredAttribute : PreservedAttribute 
 {
     
 }

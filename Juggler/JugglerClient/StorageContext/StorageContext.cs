@@ -1,12 +1,16 @@
-namespace JugglerClient;
+using JugglerClient.Connection;
 
-public class StorageContext<T>
+namespace JugglerClient.StorageContext;
+
+public class StorageContext
 {
-    public IList<JugglerList<T>> Lists { get; }
+    private readonly Dictionary<Type, JugglerList<object>> _types;
+    private readonly JugglerConnection _connection;
 
-    public StorageContext(JugglerConfiguration configuration)
+    public StorageContext(JugglerConfiguration configuration, JugglerConnection connection)
     {
-        Lists = configuration.GetLists<T>();
+        _connection = connection;
+        _types = configuration.Types;
     }
 
     public void Push()
@@ -19,8 +23,8 @@ public class StorageContext<T>
 
     }
 
-    public JugglerList<T> this[Type type]
+    public JugglerList<T> Get<T>()
     {
-        get { return Lists.First(x => x.GetType() == type);}
+        return _types[typeof(T)] as JugglerList<T> ?? throw new InvalidOperationException();
     }
 } 

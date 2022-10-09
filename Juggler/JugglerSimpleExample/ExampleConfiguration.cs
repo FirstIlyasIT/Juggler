@@ -1,4 +1,4 @@
-using JugglerClient;
+using JugglerClient.StorageContext;
 
 namespace JugglerSimpleExample;
 
@@ -6,6 +6,6 @@ public class ExampleConfiguration : JugglerConfiguration
 {
     public ExampleConfiguration()
     {
-        AddList(typeof(Employee));
+        AddType<Employee>();
     }
 }

@@ -1,4 +1,4 @@
-namespace JugglerClient;
+namespace JugglerClient.Connection;
 
 public class ConnectionParamsBuilder
 {

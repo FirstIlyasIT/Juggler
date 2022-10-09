@@ -1,20 +1,41 @@
-namespace JugglerClient;
+namespace JugglerClient.StorageContext;
 
-public abstract class JugglerList<T>
+public class JugglerList<T>
 {
-    private readonly StorageContext<T> _storageContext;
+    private readonly List<T> _items;
 
-    protected JugglerList(StorageContext<T> storageContext)
+    public JugglerList(List<T> items)
     {
-        _storageContext = storageContext;
+        _items = items;
     }
-    public IList<T> ToList()
+
+    public JugglerList()
     {
-        throw new NotImplementedException();
+        _items = new List<T>();
     }
 
     public void Add(T item)
     {
-        throw new NotImplementedException();
+        _items.Add(item);
+    }
+
+    public void Remove(T item)
+    {
+        _items.Remove(item);
+    }
+
+    public T First(Func<T, bool> func)
+    {
+        return _items.First(func);
+    }
+    
+    public T? FirstOrDefault(Func<T, bool> func)
+    {
+        return _items.FirstOrDefault(func);
+    }
+    
+    public IList<T> ToList()
+    {
+        return _items;
     }
 }
