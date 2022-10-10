@@ -4,7 +4,7 @@ namespace JugglerClient.StorageContext;
 
 public class StorageContext
 {
-    private readonly Dictionary<Type, JugglerList<object>> _types;
+    private readonly Dictionary<Type, object> _types;
     private readonly JugglerConnection _connection;
 
     public StorageContext(JugglerConfiguration configuration, JugglerConnection connection)
