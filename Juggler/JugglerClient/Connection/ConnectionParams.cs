@@ -1,14 +1,14 @@
 namespace JugglerClient.Connection;
 
-public class ConnectionParamsBuilder
+public class ConnectionParams
 {
-    public ConnectionParamsBuilder(string address, int port)
+    public ConnectionParams(string address, int port)
     {
         Address = address;
         Port = port;
     }
     
-    public ConnectionParamsBuilder(string address, int port, string user, string password) : this(address, port)
+    public ConnectionParams(string address, int port, string user, string password) : this(address, port)
     {
         User = user;
         Password = password;

@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace JugglerClient.StorageContext;
 
-public class JugglerList<T>
+public class JugglerList<T> : IEnumerable
 {
     private readonly List<T> _items;
 
@@ -37,5 +39,10 @@ public class JugglerList<T>
     public IList<T> ToList()
     {
         return _items;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        return _items.GetEnumerator();
     }
 }

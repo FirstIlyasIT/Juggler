@@ -9,11 +9,11 @@ public class JugglerConnection : IDisposable
     private readonly IPEndPoint _ipEndPoint;
     private static readonly byte[] Bytes = new byte[1024];
 
-    public JugglerConnection(ConnectionParamsBuilder paramsBuilder)
+    public JugglerConnection(ConnectionParams @params)
     {
-        var ipHost = Dns.GetHostEntry(paramsBuilder.Address);
+        var ipHost = Dns.GetHostEntry(@params.Address);
         var ipAddress = ipHost.AddressList[0];
-        _ipEndPoint = new IPEndPoint(ipAddress, paramsBuilder.Port);
+        _ipEndPoint = new IPEndPoint(ipAddress, @params.Port);
         _sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
     }
 
@@ -30,7 +30,6 @@ public class JugglerConnection : IDisposable
     public int Send(byte[] message)
     {
         _sender.Send(message);
-        
         return _sender.Receive(Bytes);
     }
     public void Dispose()
