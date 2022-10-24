@@ -1,4 +1,4 @@
-using JugglerClient.Attributes;
+using JugglerCore.Attributes;
 
 namespace JugglerSimpleExample;
 

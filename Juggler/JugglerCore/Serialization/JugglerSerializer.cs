@@ -1,7 +1,7 @@
 using System.Reflection;
-using JugglerClient.Attributes;
+using JugglerCore.Attributes;
 
-namespace JugglerClient.Serialization;
+namespace JugglerCore.Serialization;
 
 public class JugglerSerializer
 {
@@ -23,7 +23,7 @@ public class JugglerSerializer
         return result + "/>";
     }
 
-    public T Deserialize<T>(byte[] bytes)
+    public object Deserialize(string obj)
     {
         throw new NotImplementedException();
     }

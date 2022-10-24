@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace JugglerClient.Connection;
 
@@ -27,10 +28,16 @@ public class JugglerConnection : IDisposable
         Dispose();
     }
 
-    public int Send(byte[] message)
+    public string Send(byte[] message)
     {
         _sender.Send(message);
-        return _sender.Receive(Bytes);
+        var answer = new byte[1024];
+        do
+        {
+            _sender.Receive(answer);
+        } while (answer.All(x => x == 0));
+        
+        return Encoding.UTF8.GetString(answer);
     }
     public void Dispose()
     {

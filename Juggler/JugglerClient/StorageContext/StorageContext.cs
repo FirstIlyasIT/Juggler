@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Text;
 using JugglerClient.Connection;
-using JugglerClient.Serialization;
+using JugglerCore.Serialization;
 
 namespace JugglerClient.StorageContext;
 
@@ -23,17 +23,18 @@ public class StorageContext
     public int Push()
     {
         var message = _messageBuilder.Build(_connectionParams.ConnectionString, PushDates());
-        //using var connection = new JugglerConnection(_connectionParams);
-        //connection.Open();
-        //return connection.Send(Encoding.ASCII.GetBytes(message));
+        using var connection = new JugglerConnection(_connectionParams);
+        connection.Open();
+        var answer = connection.Send(Encoding.UTF8.GetBytes(message));
         return 1;
     }
 
     public int Update()
     {
-        //using var connection = new JugglerConnection(_connectionParams);
-        //connection.Open();
-        //return connection.Send(BitConverter.GetBytes(7));
+        using var connection = new JugglerConnection(_connectionParams);
+        connection.Open();
+        var answer = connection.Send(Encoding.UTF8.GetBytes("get"));
+        UpdateDates(answer);
         return 1;
     }
 
@@ -57,5 +58,21 @@ public class StorageContext
             foreach (var date in (IEnumerable)list)
                 dates.Add(_serializer.Serialize(date));
         return dates;
+    }
+
+    private void UpdateDates(string dates)
+    {
+        _types.Clear();
+        var objs = _messageBuilder.ReBuild(dates);
+        foreach (var objstr in objs)
+        {
+            var obj = _serializer.Deserialize(objstr);
+            if(_types.ContainsKey(obj.GetType()))
+                (_types[obj.GetType()] as JugglerList<object>).Add(obj);
+            else
+            {
+                _types.Add(obj.GetType(), new JugglerList<object> {obj});
+            }
+        }
     }
 } 

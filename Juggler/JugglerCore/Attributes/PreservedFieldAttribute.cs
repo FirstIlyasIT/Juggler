@@ -1,4 +1,4 @@
-namespace JugglerClient.Attributes;
+namespace JugglerCore.Attributes;
 
 public class PreservedFieldAttribute: Attribute
 {
