@@ -1,12 +1,15 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using JugglerIO;
 
 var ipHost = Dns.GetHostEntry("localhost");
 var ipAddress = ipHost.AddressList[0];
 var ipEndPoint = new IPEndPoint(ipAddress, 11000);
 var bytes = new byte[1024];
 var cash = string.Empty;
+var file = new JugglerFile();
+var schema = new JugglerSchema();
 
 var listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
